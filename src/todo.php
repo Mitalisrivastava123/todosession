@@ -61,7 +61,7 @@ if (!isset($_SESSION['todo'])) {
             $new = $_POST["new1"];
             if($new == "")
             {
-                echo '<script>alert("hello")</script>';
+                echo '<script>alert("please fill this field")</script>';
             }
             else
             {

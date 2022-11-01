@@ -4,6 +4,11 @@ if (!isset($_SESSION['todo'])) {
     $_SESSION['todo'] = [];
 }
 ?>
+<?php
+    if (isset($_POST["reset"])) {
+     $_SESSION['todo'] =[];
+    }
+    ?>
 <html>
 
 <head>
@@ -19,7 +24,7 @@ if (!isset($_SESSION['todo'])) {
         <p>
             <!-- edit function using php -->
             <?php
-          
+
             if (isset($_POST["edit"])) {
                 $m2 = $_POST["editing"];
                 echo '<style>.n1{display:none;}.adds{display:none; }</style>';
@@ -45,12 +50,14 @@ if (!isset($_SESSION['todo'])) {
                     }
                 }
             }
+
             ?>
 
             <!-- form start -->
         <form action="" method="post">
             <input id="new-task" name="new1" class="n1" value="<?php echo $v3 ?>" type="text">
             <button type="submit" class="adds" name="add">Add</button>
+            <button type="submit" name="reset">Reset</button>
         </form>
         </p>
         <h3>Todo</h3>
@@ -59,13 +66,10 @@ if (!isset($_SESSION['todo'])) {
         <?php
         if (isset($_POST["add"])) {
             $new = $_POST["new1"];
-            if($new == "")
-            {
+            if ($new == "") {
                 echo '<script>alert("please fill this field")</script>';
-            }
-            else
-            {
-            array_push($_SESSION['todo'], array("name" => $new, "status" => "false", "val" => "unchecked"));
+            } else {
+                array_push($_SESSION['todo'], array("name" => $new, "status" => "false", "val" => "unchecked"));
             }
         }
         echo "<table>";
@@ -95,6 +99,7 @@ if (!isset($_SESSION['todo'])) {
             window.location.href = "statuscheck.php?index=" + x;
         }
     </script>
+    
     <!-- script end  -->
 </body>
 
